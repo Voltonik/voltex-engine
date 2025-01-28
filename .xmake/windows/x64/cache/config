@@ -1,0 +1,12 @@
+{
+    mtimes = {
+        ["xmake.lua"] = 1738030636,
+        ["shaders\\xmake.lua"] = 1738030623
+    },
+    options = {
+        plat = "windows",
+        mode = "release",
+        arch = "x64"
+    },
+    recheck = false
+}

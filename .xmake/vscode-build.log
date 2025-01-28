@@ -1,0 +1,5 @@
+checking for Microsoft Visual Studio (x64) version ... 2022
+checking for Microsoft C/C++ Compiler (x64) version ... 19.40.33813
+[ 80%]: compiling.release src\renderer\vk_engine.cpp
+[ 96%]: linking.release VoltexEngine.exe
+[100%]: build ok, spent 6.14s

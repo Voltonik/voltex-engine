@@ -1,0 +1,11 @@
+{
+    packages = {
+        [[C:\Users\marka\AppData\Local\.xmake\packages\l\libsdl\2.30.10\28b4d102ef904159ae2e024b83302440]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\i\imgui\v1.91.6\d76111bb16804fc892f40c8ea798f170]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\s\simdjson\v3.11.3\312113894bb54adc81dede1d70025376]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\f\fastgltf\v0.8.0\c3ffbf9e37264af586cdf2bf39ff79cb]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\f\fmt\11.1.2\4ff0188d4166402c97393d7260006515]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\g\glm\1.0.1\788496219b2d40629f92bac6907b6bba]],
+        [[C:\Users\marka\AppData\Local\.xmake\packages\s\stb\2024.06.01\50b5205a30f145adb70e146a5d0967dc]]
+    }
+}
