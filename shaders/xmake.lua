@@ -35,8 +35,8 @@ target("Shaders")
     add_rules("shader_to_spirv")
     
     -- Add shader files using pattern matching
-    add_files(os.files(path.join(os.scriptdir(), "shaders/**.slang")))
-    add_files(os.files(path.join(os.scriptdir(), "shaders/**.hlsl")))
-    add_files(os.files(path.join(os.scriptdir(), "shaders/**.frag")))
-    add_files(os.files(path.join(os.scriptdir(), "shaders/**.vert")))
-    add_files(os.files(path.join(os.scriptdir(), "shaders/**.comp")))
+    add_files(os.files(path.join(os.scriptdir(), "./**.slang")))
+    add_files(os.files(path.join(os.scriptdir(), "./**.hlsl")))
+    add_files(os.files(path.join(os.scriptdir(), "./**.frag")))
+    add_files(os.files(path.join(os.scriptdir(), "./**.vert")))
+    add_files(os.files(path.join(os.scriptdir(), "./**.comp")))

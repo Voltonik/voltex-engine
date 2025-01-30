@@ -2,6 +2,9 @@
 
 #include <vk_types.h>
 #include <vk_descriptors.h>
+
+#include <Swapchain.h>
+
 #include <camera.h>
 
 
@@ -28,13 +31,6 @@ public:
 	VkDevice _device;
 	VkSurfaceKHR _surface;
 
-	VkSwapchainKHR _swapchain;
-	VkFormat _swapchainImageFormat;
-
-	std::vector<VkImage> _swapchainImages;
-	std::vector<VkImageView> _swapchainImageViews;
-	VkExtent2D _swapchainExtent;
-
 	// immediate submit structures
 	VkFence _immFence;
 	VkCommandBuffer _immCommandBuffer;
@@ -49,9 +45,6 @@ public:
 	DeletionQueue _mainDeletionQueue;
 
 	VmaAllocator _allocator;
-
-	AllocatedImage _drawImage;
-	VkExtent2D _drawExtent;
 
 	DescriptorAllocator globalDescriptorAllocator;
 
@@ -80,6 +73,7 @@ public:
 	void update_scene();
 
 private:
+	Swapchain m_Swapchain;
 	bool resize_requested = false;
 
 	void init_vulkan();
@@ -89,10 +83,6 @@ private:
 	void init_pipelines();
 	void init_background_pipelines();
 	void init_imgui();
-
-	void create_swapchain(uint32_t width, uint32_t height);
-	void resize_swapchain();
-	void destroy_swapchain();
 
 	void init_descriptors();
 

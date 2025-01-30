@@ -3,10 +3,10 @@
         ["xmake.lua"] = 1738030636,
         ["shaders\\xmake.lua"] = 1738030623
     },
+    recheck = false,
     options = {
         plat = "windows",
-        mode = "release",
-        arch = "x64"
-    },
-    recheck = false
+        arch = "x64",
+        mode = "release"
+    }
 }
