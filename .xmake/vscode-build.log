@@ -1,3 +1,0 @@
-[ 59%]: compiling.release src\renderer\swapchain\Swapchain.cpp
-[ 95%]: linking.release VoltexEngine.exe
-[100%]: build ok, spent 2.813s

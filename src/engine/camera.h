@@ -1,4 +1,4 @@
-#include <vk_types.h>
+#include <renderer/utilities/vk_types.h>
 #include <SDL_events.h>
 
 class Camera {

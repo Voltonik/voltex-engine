@@ -1,8 +1,10 @@
 {
+    "C_Cpp.default.compilerPath": "C:/Program Files/LLVM/bin/clang++.exe",
     "files.associations": {
         "*.sqlbook": "sql",
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
+        "*.slang": "slang",
         "vector": "cpp",
         "functional": "cpp",
         "optional": "cpp",
@@ -89,6 +91,13 @@
         "xstring": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "codecvt": "cpp",
+        "numeric": "cpp",
+        "source_location": "cpp",
+        "stdfloat": "cpp",
+        "unordered_set": "cpp"
     }
 }

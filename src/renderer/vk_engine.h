@@ -73,7 +73,7 @@ public:
 	void update_scene();
 
 private:
-	Swapchain m_Swapchain;
+	Swapchain* m_Swapchain = nullptr;
 	bool resize_requested = false;
 
 	void init_vulkan();

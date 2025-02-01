@@ -251,25 +251,27 @@ void main() {
         return;
     }
 
-    vec2 uv = (vec2(pixel_coords) / vec2(size)) * 2.0 - 1.0;
+    vec2 uv = (vec2(pixel_coords) / vec2(size));
 
-    vec4 ro = PushConstants.camPos;
-    vec3 camForward = normalize(PushConstants.camForward.xyz);
-    vec3 camRight = normalize(PushConstants.camRight.xyz);
-    vec3 camUp = normalize(PushConstants.camUp.xyz);
+    // vec4 ro = PushConstants.camPos;
+    // vec3 camForward = normalize(PushConstants.camForward.xyz);
+    // vec3 camRight = normalize(PushConstants.camRight.xyz);
+    // vec3 camUp = normalize(PushConstants.camUp.xyz);
 
-    float aspectRatio = float(size.x) / float(size.y);
-    vec3 rd = normalize(camForward + uv.x * camRight * aspectRatio + uv.y * camUp);
+    // float aspectRatio = float(size.x) / float(size.y);
+    // vec3 rd = normalize(camForward + uv.x * camRight * aspectRatio + uv.y * camUp);
     
     vec3 col = vec3(0);
-    RayHit rh;
-    if (RayMarch(ro, rd, rh))
-        col = rh.pos;
-    else if (ro.w == 0)
-        col = GetSky(rd);
+    // RayHit rh;
+    // if (RayMarch(ro, rd, rh))
+    //     col = rh.pos;
+    // else if (ro.w == 0)
+    //     col = GetSky(rd);
     
-    if (ro.w == 0)
-        col = PostEffects(vec4(col, 1.0), uv).xyz;
+    // if (ro.w == 0)
+    //     col = PostEffects(vec4(col, 1.0), uv).xyz;
+
+    col = vec3(uv.x, uv.y, 0);
 
     imageStore(outputImage, pixel_coords, vec4(col, 1.0));
 }

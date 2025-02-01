@@ -1,4 +1,5 @@
 #include "vk_types.h"
+#define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include <VkBootstrap.h>
 #include <vk_initializers.h>

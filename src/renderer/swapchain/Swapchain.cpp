@@ -21,10 +21,12 @@ void Swapchain::Create(uint32_t width, uint32_t height, VkPhysicalDevice chosenG
         .build()
         .value();
 
+
     Extent = vkbSwapchain.extent;
     SwapchainKHR = vkbSwapchain.swapchain;
     Images = vkbSwapchain.get_images().value();
     ImageViews = vkbSwapchain.get_image_views().value();
+
 
     CreateDrawImage(width, height);
 }

@@ -4,9 +4,15 @@
 
 bool vkutil::load_shader_module(const char* filePath, VkDevice device, VkShaderModule* outShaderModule) {
     // open the file. With cursor at the end
-    std::ifstream file(filePath, std::ios::ate | std::ios::binary);
+#ifndef PROJECT_ROOT
+    fmt::println("PROJECT_ROOT must be defined in src/CMakeLists.txt:\ntarget_compile_definitions(engine PRIVATE PROJECT_ROOT=\"${CMAKE_SOURCE_DIR}\")");
+    return false;
+#else
+    std::ifstream file(std::string(PROJECT_ROOT) + "/" + filePath, std::ios::ate | std::ios::binary);
+#endif
 
     if (!file.is_open()) {
+        fmt::println("Shader file cannot be opened");
         return false;
     }
 
@@ -39,6 +45,7 @@ bool vkutil::load_shader_module(const char* filePath, VkDevice device, VkShaderM
 
     VkShaderModule shaderModule;
     if (vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+        fmt::println("Error creating a shader module");
         return false;
     }
     *outShaderModule = shaderModule;
