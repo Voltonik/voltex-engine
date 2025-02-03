@@ -59,11 +59,24 @@ void Swapchain::CreateDrawImage(uint32_t width, uint32_t height) {
     VkImageViewCreateInfo rview_info = vkinit::imageview_create_info(_drawImage.imageFormat, _drawImage.image, VK_IMAGE_ASPECT_COLOR_BIT);
 
     VK_CHECK(vkCreateImageView(m_Device, &rview_info, nullptr, &_drawImage.imageView));
+
+    _depthImage.imageFormat = VK_FORMAT_D32_SFLOAT;
+    _depthImage.imageExtent = drawImageExtent;
+    VkImageUsageFlags depthImageUsages{};
+    depthImageUsages |= VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+
+    VkImageCreateInfo dimg_info = vkinit::image_create_info(_depthImage.imageFormat, depthImageUsages, drawImageExtent);
+
+    //allocate and create the image
+    vmaCreateImage(m_Allocator, &dimg_info, &rimg_allocinfo, &_depthImage.image, &_depthImage.allocation, nullptr);
+
+    //build a image-view for the draw image to use for rendering
+    VkImageViewCreateInfo dview_info = vkinit::imageview_create_info(_depthImage.imageFormat, _depthImage.image, VK_IMAGE_ASPECT_DEPTH_BIT);
+
+    VK_CHECK(vkCreateImageView(m_Device, &dview_info, nullptr, &_depthImage.imageView));
 }
 
 void Swapchain::Resize(VkPhysicalDevice chosenGPU, VkSurfaceKHR surface) {
-    vkDeviceWaitIdle(m_Device);
-
     Destroy();
 
     int w, h;
@@ -75,13 +88,14 @@ void Swapchain::Resize(VkPhysicalDevice chosenGPU, VkSurfaceKHR surface) {
 }
 
 void Swapchain::Destroy() {
-    vkDestroySwapchainKHR(m_Device, SwapchainKHR, nullptr);
+    vkDestroyImageView(m_Device, _drawImage.imageView, nullptr);
+    vmaDestroyImage(m_Allocator, _drawImage.image, _drawImage.allocation);
+    vkDestroyImageView(m_Device, _depthImage.imageView, nullptr);
+    vmaDestroyImage(m_Allocator, _depthImage.image, _depthImage.allocation);
 
     for (int i = 0; i < ImageViews.size(); i++) {
         vkDestroyImageView(m_Device, ImageViews[i], nullptr);
     }
 
-    // Clean up the draw image
-    vkDestroyImageView(m_Device, _drawImage.imageView, nullptr);
-    vmaDestroyImage(m_Allocator, _drawImage.image, _drawImage.allocation);
+    vkDestroySwapchainKHR(m_Device, SwapchainKHR, nullptr);
 }

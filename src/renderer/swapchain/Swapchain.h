@@ -20,6 +20,7 @@ public:
     VkExtent2D Extent;
 
     AllocatedImage _drawImage;
+    AllocatedImage _depthImage;
     VkExtent2D _drawExtent;
 
 private:

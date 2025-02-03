@@ -6,6 +6,7 @@
 #include <Swapchain.h>
 
 #include <camera.h>
+#include "vk_loader.h"
 
 
 #ifdef NODEBUG
@@ -55,10 +56,10 @@ public:
 	int currentBackgroundEffect = 0;
 
 	GPUSceneData sceneData;
+	std::vector<std::shared_ptr<MeshAsset>> testMeshes;
 	Camera mainCamera;
 
 	float renderScale = 1.f;
-
 	int currentView = 0;
 
 	static VulkanEngine& Get();
@@ -69,6 +70,10 @@ public:
 	void run();
 
 	void immediate_submit(std::function<void(VkCommandBuffer cmd)>&& function);
+
+	AllocatedBuffer create_buffer(size_t allocSize, VkBufferUsageFlags usage, VmaMemoryUsage memoryUsage);
+	void destroy_buffer(const AllocatedBuffer& buffer);
+	GPUMeshBuffers uploadMesh(std::span<uint32_t> indices, std::span<Vertex> vertices);
 
 	void update_scene();
 
@@ -85,11 +90,13 @@ private:
 	void init_imgui();
 
 	void init_descriptors();
+	void update_descriptors();
 
-	VkPipelineLayout _trianglePipelineLayout;
-	VkPipeline _trianglePipeline;
+	VkPipelineLayout _meshPipelineLayout;
+	VkPipeline _meshPipeline;
 
-	void init_triangle_pipeline();
+	void init_mesh_pipeline();
+	void init_default_data();
 
 	void draw_background(VkCommandBuffer cmd);
 	void draw_geometry(VkCommandBuffer cmd);
